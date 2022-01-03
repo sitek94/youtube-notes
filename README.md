@@ -1,6 +1,6 @@
 # YouTube Notes
 
-A Chrome Extension for taking quick notes while watching a Youtube video
+A Chrome Extension for taking quick notes while watching a YouTube video
 
 ## Why
 
@@ -23,3 +23,10 @@ I want to have a textarea field next to the YT video that I'm watching where I c
 - https://blog.logrocket.com/creating-chrome-extension-react-typescript/
 - https://levelup.gitconnected.com/make-your-first-chrome-extension-with-javascript-7aa383db2b03
 - https://developer.chrome.com/docs/extensions/mv3/getstarted/
+
+## Development 
+
+- if you use WebStorm, and it doesn't recognize `chrome` variable, follow [this stackoverflow thread](https://stackoverflow.com/a/25466708/13504198)
+  and install `@types/chrome`
+- if you have some error around step [Inspect the background script](https://developer.chrome.com/docs/extensions/mv3/getstarted/#inspect-background)
+  try removing and adding again your extension
