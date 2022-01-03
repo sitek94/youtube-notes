@@ -1,0 +1,6 @@
+{
+  "name": "YouTube Notes",
+  "description": "A Chrome Extension for taking quick notes while watching a Youtube video",
+  "version": "1.0",
+  "manifest_version": 3
+}
