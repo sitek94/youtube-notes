@@ -23,6 +23,7 @@ I want to have a textarea field next to the YT video that I'm watching where I c
 - https://blog.logrocket.com/creating-chrome-extension-react-typescript/
 - https://levelup.gitconnected.com/make-your-first-chrome-extension-with-javascript-7aa383db2b03
 - https://developer.chrome.com/docs/extensions/mv3/getstarted/
+- https://developer.chrome.com/docs/extensions/mv3/content_scripts/#functionality
 
 ## Development 
 
