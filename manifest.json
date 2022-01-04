@@ -7,6 +7,14 @@
     "service_worker": "background.js"
   },
   "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "css": ["styles.css"],
+      "js": ["script.js"],
+      "run_at": "document_end"
+    }
+  ],
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html",

@@ -1,0 +1,18 @@
+:root {
+    --color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color: #fff;
+    }
+}
+
+.yt-notes h2 {
+    color: var(--color);
+}
+
+.yt-notes textarea {
+    background-color: transparent;
+    color: var(--color);
+}
