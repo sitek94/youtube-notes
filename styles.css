@@ -13,8 +13,9 @@
   height: 720px; /* Default video player height */
   width: 100%;
   padding: 2rem;
-  border: 0;
   outline: 0;
+  border: 0;
+  border-left: 2px solid transparent;
   color: var(--color);
   background: rgba(0, 0, 0, 0.2);
   font-family: sans-serif;
