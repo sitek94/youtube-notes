@@ -12,10 +12,11 @@ A Chrome Extension for taking quick notes while watching a YouTube video
 
 ## Resources
 
-- https://blog.logrocket.com/creating-chrome-extension-react-typescript/
-- https://levelup.gitconnected.com/make-your-first-chrome-extension-with-javascript-7aa383db2b03
-- https://developer.chrome.com/docs/extensions/mv3/getstarted/
-- https://developer.chrome.com/docs/extensions/mv3/content_scripts/#functionality
+`Chrome Developers > Documentation > Extensions`
+
+- [Getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted/)
+- [Content scripts](https://developer.chrome.com/docs/extensions/mv3/content_scripts/#functionality)
+- [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage/)
 
 ## Development 
 
@@ -23,3 +24,20 @@ A Chrome Extension for taking quick notes while watching a YouTube video
   and install `@types/chrome`
 - if you have some error around step [Inspect the background script](https://developer.chrome.com/docs/extensions/mv3/getstarted/#inspect-background)
   try removing and adding again your extension
+
+## Known obstacles
+
+- persisting notes 
+  - storage limit - the easiest way to store the notes is to use [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage/),
+    which seems to have a [limit](https://developer.chrome.com/docs/extensions/reference/storage/#property-sync) of 102400 bytes.
+    - above-mentioned limit is for `storage.sync`, `storage.local` with `unlimitedStorage` permission, doesn't have such limit, 
+      so if you don't need to sync your notes between devices, that's something to consider
+  - write operations limit (120 per minute) - we can't save the notes on each keystroke, instead we need to either debounce
+    the input, or save the notes every minute or so.
+
+## Ideas 
+
+Just a few ideas that one might want to implement, but I'll probably never add them, because I don't really 
+need them:
+
+- [ ] add options page to customize the font size, colors, etc.
