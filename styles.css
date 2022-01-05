@@ -1,18 +1,28 @@
 :root {
-    --color: #222;
+  --color: black;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --color: #fff;
-    }
-}
-
-.yt-notes h2 {
-    color: var(--color);
+  :root {
+    --color: white;
+  }
 }
 
 .yt-notes textarea {
-    background-color: transparent;
-    color: var(--color);
+  box-sizing: border-box;
+  height: 720px; /* Default video player height */
+  width: 100%;
+  padding: 2rem;
+  border: 0;
+  outline: 0;
+  color: var(--color);
+  background: rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  resize: vertical;
+}
+
+.yt-notes textarea:focus {
+  border-left: 2px solid cornflowerblue;
 }

@@ -6,7 +6,6 @@ async function main() {
 
   secondary.innerHTML = `
     <div class="yt-notes">
-      <h2>Notes</h2>
       <textarea id="notes"></textarea>
      </div>
   `;
