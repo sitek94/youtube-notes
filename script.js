@@ -1,8 +1,9 @@
-const DEBUG = false;
+const DEBUG = true;
 
+const oldConsoleLog = console.log;
 console.log = function (...args) {
   if (DEBUG) {
-    console.log(...args);
+    oldConsoleLog(...args);
   }
 };
 
@@ -15,15 +16,14 @@ async function main() {
   secondary.innerHTML = `
     <div class="yt-notes">
       <textarea id="notes"></textarea>
-      <button id="save">Save</button>
-     </div>
+    </div>
   `;
 
   const textarea = secondary.querySelector("#notes");
 
   // Try to get old notes from the storage, and initialize the textarea with it
   const videoId = getVideoId();
-  const oldNotes = await getNotes(videoId);
+  let oldNotes = await getNotes(videoId);
   if (oldNotes) {
     console.log("✅ Old notes found, setting textarea value");
     textarea.value = oldNotes;
@@ -31,14 +31,22 @@ async function main() {
     console.log("❌ No old notes found");
   }
 
-  const saveBtn = secondary.querySelector("#save");
+  // Save the notes on keydown event, at most every two seconds
+  textarea.addEventListener("keydown", debounce(save, 2000));
 
-  saveBtn.addEventListener("click", () => {
-    const videoId = getVideoId();
-    const notes = textarea.value;
+  function save() {
+    const newNotes = textarea.value;
 
-    saveNotes(videoId, notes);
-  });
+    // Save the notes only if they are different from the old ones
+    const notesHaveNotChanged = newNotes === oldNotes;
+    if (notesHaveNotChanged) {
+      return;
+    }
+
+    // Save and update old notes
+    saveNotes(videoId, newNotes);
+    oldNotes = newNotes;
+  }
 }
 
 /**
@@ -98,4 +106,14 @@ function getContent() {
       }
     }, 500);
   });
+}
+
+function debounce(func, timeout) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
 }
