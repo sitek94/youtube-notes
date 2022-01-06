@@ -19,7 +19,7 @@ A Chrome Extension for taking quick notes while watching a YouTube video
 - [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage/)
 
 ## Development 
-
+- if you're looking for a simpler version of the extension, here's [a last commit](https://github.com/sitek94/youtube-notes/tree/d577812d6a0963c19b861ffc3e15a42d51aa63f0) before I introduced parcel, started to bundle the files and added markdown support
 - if you use WebStorm, and it doesn't recognize `chrome` variable, follow [this stackoverflow thread](https://stackoverflow.com/a/25466708/13504198)
   and install `@types/chrome`
 - if you have some error around step [Inspect the background script](https://developer.chrome.com/docs/extensions/mv3/getstarted/#inspect-background)
