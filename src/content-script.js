@@ -1,3 +1,6 @@
+import easyMdeCss from "bundle-text:./styles.css";
+import EasyMDE from "easymde";
+
 const DEBUG = true;
 
 const oldConsoleLog = console.log;
@@ -13,37 +16,51 @@ async function main() {
   const content = await getContent();
   const secondary = content.querySelector("#secondary");
 
+  const textareaId = "yt-notes-textarea";
   secondary.innerHTML = `
-    <div class="yt-notes">
-      <textarea id="notes"></textarea>
-    </div>
+    <style>
+      ${easyMdeCss}
+    </style>
+    <textarea id=${textareaId}></textarea>
   `;
 
-  const textarea = secondary.querySelector("#notes");
+  const textarea = secondary.querySelector("#" + textareaId);
+  if (!textarea) {
+    throw new Error("Could not find textarea with #notes ID!");
+  }
+
+  const easyMDE = new EasyMDE({
+    element: textarea,
+    status: false,
+    autosave: {
+      enabled: false,
+    },
+    spellChecker: false,
+    toolbar: false,
+  });
 
   // Try to get old notes from the storage, and initialize the textarea with it
   const videoId = getVideoId();
   let oldNotes = await getNotes(videoId);
   if (oldNotes) {
     console.log("✅ Old notes found, setting textarea value");
-    textarea.value = oldNotes;
+    easyMDE.value(oldNotes);
   } else {
     console.log("❌ No old notes found");
   }
 
-  // Save the notes on keydown event, at most every two seconds
-  textarea.addEventListener("keydown", debounce(save, 2000));
+  // Save the notes, at most every two seconds
+  easyMDE.codemirror.on("change", debounce(save, 2000));
 
   function save() {
-    const newNotes = textarea.value;
-
+    const newNotes = easyMDE.value();
     // Save the notes only if they are different from the old ones
     const notesHaveNotChanged = newNotes === oldNotes;
     if (notesHaveNotChanged) {
       return;
     }
 
-    // Save and update old notes
+    // Save and update in-memory old notes
     saveNotes(videoId, newNotes);
     oldNotes = newNotes;
   }
@@ -86,7 +103,8 @@ async function saveNotes(videoId, notes) {
  */
 function getVideoId() {
   const url = window.location.href;
-  const videoId = url.split("=")[1];
+  const videoIdRegExp = /^https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^&]+)/;
+  const videoId = videoIdRegExp.exec(url);
 
   return videoId;
 }
@@ -108,6 +126,9 @@ function getContent() {
   });
 }
 
+/**
+ * Extremely simple debounce
+ */
 function debounce(func, timeout) {
   let timer;
   return (...args) => {

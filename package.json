@@ -3,11 +3,16 @@
   "description": "A Chrome Extension for taking quick notes while watching a Youtube video",
   "version": "1.0.0",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "prebuild": "rm -rf dist .cache && mkdir dist",
-    "dev": "NODE_ENV=development cp src/manifest.json dist/ && cp -r src/images dist/ && parcel watch --no-hmr src/{content-script.js,styles.css}",
-    "build": "NODE_ENV=production cp src/manifest.json dist/ && cp -r src/images dist/ && parcel build src/{content-script.js,styles.css}"
+    "dev": "NODE_ENV=development cp src/manifest.json dist/ && cp -r src/images dist/ && parcel watch --no-hmr src/{content-script.js}",
+    "build": "NODE_ENV=production cp src/manifest.json dist/ && cp -r src/images dist/ && parcel build src/{content-script.js}"
   },
   "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.0.0-rc.0",
     "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "easymde": "^2.15.0"
   }
 }
