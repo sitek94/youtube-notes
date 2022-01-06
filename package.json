@@ -1,0 +1,13 @@
+{
+  "name": "youtube-notes",
+  "description": "A Chrome Extension for taking quick notes while watching a Youtube video",
+  "version": "1.0.0",
+  "scripts": {
+    "prebuild": "rm -rf dist .cache && mkdir dist",
+    "dev": "NODE_ENV=development cp src/manifest.json dist/ && cp -r src/images dist/ && parcel watch --no-hmr src/{content-script.js,styles.css}",
+    "build": "NODE_ENV=production cp src/manifest.json dist/ && cp -r src/images dist/ && parcel build src/{content-script.js,styles.css}"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-rc.0"
+  }
+}

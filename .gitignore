@@ -1,3 +1,13 @@
+# NPM Dependencies
+node_modules
+
+# Build
+dist
+
 # IDE
 .vscode
 .idea
+
+# Other
+.parcel-cache
+
