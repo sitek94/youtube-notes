@@ -2,16 +2,6 @@ import easyMdeCss from "bundle-text:./styles.css";
 import EasyMDE from "easymde";
 import { getYoutubeVideoId } from "./get-youtube-video-id";
 
-// TODO: use env variable
-const DEBUG = true;
-
-const oldConsoleLog = console.log;
-console.log = function (...args) {
-  if (DEBUG) {
-    oldConsoleLog(...args);
-  }
-};
-
 main();
 
 async function main() {
@@ -28,7 +18,7 @@ async function main() {
 
   const textarea = secondary.querySelector("#" + textareaId);
   if (!textarea) {
-    throw new Error("Could not find textarea with #notes ID!");
+    throw new Error("❌ Could not find textarea with #notes ID!");
   }
 
   const easyMDE = new EasyMDE({
@@ -45,10 +35,10 @@ async function main() {
   const videoId = getVideoId();
   let oldNotes = await getNotes(videoId);
   if (oldNotes) {
-    console.log("✅ Old notes found, setting textarea value");
+    console.debug("✅ Old notes found, setting textarea value");
     easyMDE.value(oldNotes);
   } else {
-    console.log("❌ No old notes found");
+    console.debug("📭 No old notes found");
   }
 
   // Save the notes, at most every two seconds
@@ -78,7 +68,7 @@ async function getNotes(videoId) {
     return result[videoId];
   } catch (error) {
     if (/Error in invocation of storage\.get/.test(error.message)) {
-      console.log("🥱 There are no notes for this video...");
+      console.debug("🥱 There are no notes for this video...");
       return null;
     } else {
       console.error("💣 Something went wrong when getting the notes!");
@@ -93,7 +83,7 @@ async function getNotes(videoId) {
 async function saveNotes(videoId, notes) {
   try {
     await chrome.storage.sync.set({ [videoId]: notes });
-    console.log("🥳 Notes saved!");
+    console.debug("🥳 Notes saved!");
   } catch (error) {
     console.error("💣 Something went wrong when saving the notes!");
     console.error(error);
