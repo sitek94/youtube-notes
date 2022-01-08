@@ -9,8 +9,8 @@
     "parcel:watch": "parcel watch --no-hmr src/content-script.js",
     "dev": "NODE_ENV=development npm run copy-files && npm run parcel:watch",
     "build": "NODE_ENV=production npm run copy-files && npm run parcel:build",
-    "zip": "bestzip ${npm_package_name}_${npm_package_version}.zip dist/*",
-    "release": "npm run build && release-it"
+    "zip": "bestzip dist/${npm_package_name}_${npm_package_version}.zip dist/*",
+    "release": "release-it"
   },
   "dependencies": {
     "easymde": "^2.15.0"
