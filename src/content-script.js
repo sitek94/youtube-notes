@@ -1,6 +1,8 @@
 import easyMdeCss from "bundle-text:./styles.css";
 import EasyMDE from "easymde";
+import { getYoutubeVideoId } from "./get-youtube-video-id";
 
+// TODO: use env variable
 const DEBUG = true;
 
 const oldConsoleLog = console.log;
@@ -103,8 +105,7 @@ async function saveNotes(videoId, notes) {
  */
 function getVideoId() {
   const url = window.location.href;
-  const videoIdRegExp = /^https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^&]+)/;
-  const videoId = videoIdRegExp.exec(url);
+  const videoId = getYoutubeVideoId(url);
 
   return videoId;
 }
