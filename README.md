@@ -10,18 +10,15 @@ A Chrome Extension for taking quick notes while watching a YouTube video
 
 ![Screenshot 2022-01-03 at 11 13 03](https://user-images.githubusercontent.com/58401630/147919353-9de8ed4e-3bfc-42db-be9c-23cdaa93a877.png)
 
-## Resources
+## Development
 
-`Chrome Developers > Documentation > Extensions`
+### Available scripts
+`npm run dev` - runs parcel in watch mode, so whenever you make changes you only have to reload the extension
 
-- [Getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted/)
-- [Content scripts](https://developer.chrome.com/docs/extensions/mv3/content_scripts/#functionality)
-- [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage/)
+`npm run build` - runs parcel in production mode
 
-## Development 
+## Tips 
 - if you're looking for a simpler version of the extension, here's [a last commit](https://github.com/sitek94/youtube-notes/tree/d577812d6a0963c19b861ffc3e15a42d51aa63f0) before I introduced parcel, started to bundle the files and added markdown support
-- if you use WebStorm, and it doesn't recognize `chrome` variable, follow [this stackoverflow thread](https://stackoverflow.com/a/25466708/13504198)
-  and install `@types/chrome`
 - if you have some error around step [Inspect the background script](https://developer.chrome.com/docs/extensions/mv3/getstarted/#inspect-background)
   try removing and adding again your extension
 
@@ -34,6 +31,14 @@ A Chrome Extension for taking quick notes while watching a YouTube video
       so if you don't need to sync your notes between devices, that's something to consider
   - write operations limit (120 per minute) - we can't save the notes on each keystroke, instead we need to either debounce
     the input, or save the notes every minute or so.
+
+## Resources
+
+`Chrome Developers > Documentation > Extensions`
+
+- [Getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted/)
+- [Content scripts](https://developer.chrome.com/docs/extensions/mv3/content_scripts/#functionality)
+- [chrome.storage](https://developer.chrome.com/docs/extensions/reference/storage/)
 
 ## Ideas 
 
