@@ -1,7 +1,7 @@
 {
   "name": "youtube-notes",
   "description": "A Chrome Extension for taking quick notes while watching a Youtube video",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "copy-files": "cp src/manifest.json dist/ && cp -r src/images dist/",
     "prebuild": "rm -rf dist .cache && mkdir dist",
