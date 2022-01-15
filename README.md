@@ -32,7 +32,7 @@ A Chrome Extension for taking quick notes while watching a YouTube video
   - write operations limit (120 per minute) - we can't save the notes on each keystroke, instead we need to either debounce
     the input, or save the notes every minute or so.
 - developing is quite hard, because you have to manually reload the extension 
-  - [webpack-ext-reloader] could help, but unfortunatelly, as of now it doesn't support Manifest v3. In case it is supported in the future, I've got a branch with the build already migrated from rollup to webpack: [webpack migration branch](https://github.com/sitek94/youtube-notes/tree/webpack)
+  - [webpack-ext-reloader](https://github.com/SimplifyJobs/webpack-ext-reloader) could help, but unfortunatelly, as of now it doesn't support Manifest v3. In case it is supported in the future, I've got a branch with the build already migrated from rollup to webpack: [webpack migration branch](https://github.com/sitek94/youtube-notes/tree/webpack)
   - another option that looks promising is using Chrome API to reload the extention, I have to do some more digging still
 
 ## Resources
