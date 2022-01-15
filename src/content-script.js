@@ -1,4 +1,4 @@
-import easyMdeCss from "bundle-text:./styles.css";
+import easyMdeCss from "to-string-loader!css-loader!./styles.css";
 import EasyMDE from "easymde";
 import { getYoutubeVideoId } from "./get-youtube-video-id";
 
